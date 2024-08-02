@@ -1,6 +1,4 @@
-Certainly! Here's a sample README file for your project:
 
----
 
 # Full Stack Development Challenge
 
@@ -112,20 +110,3 @@ Deploy the backend to a hosting provider of your choice, such as Heroku, Vercel,
 ### Deployment
 
 Deploy the frontend application using platforms like Netlify or Vercel.
-
-## Submission
-
-1. **Host your backend & frontend applications**.
-2. **Share your backend API endpoint (ending in /bfhl) and frontend application URL** in the following form:
-   [Submission Form](https://forms.office.com/r/kgwxTBPnCw)
-
----
-
-### Notes
-
-- Ensure that both applications are running correctly and are accessible via their respective URLs.
-- Follow best practices for error handling and input validation in both backend and frontend code.
-
----
-
-Feel free to modify and enhance this README file as needed.
