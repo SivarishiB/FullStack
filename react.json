@@ -1,0 +1,60 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import Select from 'react-select';
+
+const options = [
+  { value: 'alphabets', label: 'Alphabets' },
+  { value: 'numbers', label: 'Numbers' },
+  { value: 'highest_alphabet', label: 'Highest Alphabet' },
+];
+
+const App = () => {
+  const [jsonInput, setJsonInput] = useState('');
+  const [response, setResponse] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const handleSubmit = async () => {
+    try {
+      const parsedInput = JSON.parse(jsonInput);
+      const res = await axios.post('https://your-backend-url.com/bfhl', parsedInput);
+      setResponse(res.data);
+    } catch (error) {
+      console.error('Invalid JSON or API Error', error);
+    }
+  };
+
+  const renderResponse = () => {
+    if (!response) return null;
+
+    const { numbers, alphabets, highest_alphabet } = response;
+
+    return (
+      <div>
+        {selectedOptions.includes('numbers') && <div>Numbers: {JSON.stringify(numbers)}</div>}
+        {selectedOptions.includes('alphabets') && <div>Alphabets: {JSON.stringify(alphabets)}</div>}
+        {selectedOptions.includes('highest_alphabet') && <div>Highest Alphabet: {JSON.stringify(highest_alphabet)}</div>}
+      </div>
+    );
+  };
+
+  return (
+    <div>
+      <h1>SRM University Dev Challenge</h1>
+      <input
+        type="text"
+        value={jsonInput}
+        onChange={(e) => setJsonInput(e.target.value)}
+        placeholder='Enter JSON e.g. { "data": ["A","B","1"] }'
+      />
+      <button onClick={handleSubmit}>Submit</button>
+      <Select
+        isMulti
+        options={options}
+        onChange={(selected) => setSelectedOptions(selected.map(opt => opt.value))}
+      />
+      {renderResponse()}
+    </div>
+  );
+};
+
+export default App;
